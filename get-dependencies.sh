@@ -28,8 +28,6 @@ fi
 echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
-cd ./CatacombGL
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-mv -v CatacombGL ../../AppDir/bin
+cmake -S ./CatacombGL -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j$(nproc)
+mv -v build/CatacombGL ./AppDir/bin
